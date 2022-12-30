@@ -40,6 +40,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
@@ -51,6 +54,7 @@
             this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +86,7 @@
             "Tháng 10",
             "Tháng 11",
             "Tháng 12"});
-            this.cbxMonth.Location = new System.Drawing.Point(102, 13);
+            this.cbxMonth.Location = new System.Drawing.Point(105, 3);
             this.cbxMonth.Name = "cbxMonth";
             this.cbxMonth.Size = new System.Drawing.Size(525, 32);
             this.cbxMonth.TabIndex = 3;
@@ -91,16 +95,16 @@
             // 
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cbxMonth);
-            this.panel1.Location = new System.Drawing.Point(22, 114);
+            this.panel1.Location = new System.Drawing.Point(22, 116);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(630, 64);
+            this.panel1.Size = new System.Drawing.Size(630, 42);
             this.panel1.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 16);
+            this.label1.Location = new System.Drawing.Point(3, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 24);
             this.label1.TabIndex = 5;
@@ -178,6 +182,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.panel5);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.panel3);
             this.tabPage1.Controls.Add(this.panel1);
@@ -189,6 +194,33 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Gửi tin nhắn";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.comboBox1);
+            this.panel5.Location = new System.Drawing.Point(22, 164);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(630, 36);
+            this.panel5.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 24);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Nội dung:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(105, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(525, 28);
+            this.comboBox1.TabIndex = 11;
             // 
             // tabPage2
             // 
@@ -269,6 +301,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -295,6 +329,9 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.FlowLayoutPanel flpConfig;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel panel5;
     }
 }
 

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SMS_Speed.DTO
 {
-    internal class BalanceDTO
-    {   
-        public string Balance;
-        public int CodeResponse;
-        public string UserID;
+    internal class ResponseDTO
+    {
+        public int CodeResult;
+        public int CountRegenerate;
+        public string SMSID;
     }
 }

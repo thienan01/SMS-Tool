@@ -28,33 +28,39 @@ namespace SMS_Speed
         }
         private void btnSend_Click(object sender, EventArgs e)
         {
-            string month = cbxMonth.Text.Replace("Tháng ","");
-            string query = @"Select FirstName, LastName,BirthDate,HomeTele from Member where MONTH(birthdate) BETWEEN '" + month + @"' and '" + month+@"'";
-            DBConenection.getInstance().Open();
-            OdbcCommand cmd = new OdbcCommand(query, DBConenection.getInstance());
-            OdbcDataReader reader = cmd.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Load(reader);
-            DBConenection.getInstance().Close();
+            try
+            {
+                string month = cbxMonth.Text.Replace("Tháng ","");
+                string query = @"Select FirstName, LastName,BirthDate,HomeTele from Member where MONTH(birthdate) BETWEEN '" + month + @"' and '" + month+@"'";
+                DBConenection.getInstance().Open();
+                OdbcCommand cmd = new OdbcCommand(query, DBConenection.getInstance());
+                OdbcDataReader reader = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+                DBConenection.getInstance().Close();
 
-            List<MemberDTO> members = new List<MemberDTO>();
-            members = (from DataRow dr in dt.Rows
-                           select new MemberDTO()
-                           {
-                               FirstName = dr["FirstName"].ToString(),
-                               LastName = dr["LastName"].ToString(),
-                               BirthDate = dr["BirthDate"].ToString(),
-                               HomeTele = dr["HomeTele"].ToString()
-                           }).ToList();
-            List<string> nums = members.Where(w => w.HomeTele != "").Select(s=>s.HomeTele).ToList();
-            string phoneNums = String.Join(",", nums);
-            SMSFunction.Send(phoneNums);
+                List<MemberDTO> members = new List<MemberDTO>();
+                members = (from DataRow dr in dt.Rows
+                               select new MemberDTO()
+                               {
+                                   FirstName = dr["FirstName"].ToString(),
+                                   LastName = dr["LastName"].ToString(),
+                                   BirthDate = dr["BirthDate"].ToString(),
+                                   HomeTele = dr["HomeTele"].ToString()
+                               }).ToList();
+                List<MemberDTO> customers = members.Where(w => w.HomeTele != "").Select(s=> s).ToList();
 
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
+                if (SMSFunction.SendSMSJson(customers))
+                {
+                    MessageBox.Show("Sent successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                    throw new Exception("Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void InitConfig()
@@ -68,25 +74,22 @@ namespace SMS_Speed
                 label.Text = config.Key + ": ";
                 label.AutoSize = true;
                 label.Location = new Point(0, 0);
-                var textbox = new TextBox();
-                textbox.Text = config.Value;
-                textbox.Width = width;
-                textbox.Location = new Point(x, 0);
-                textbox.Name = config.Key;
 
                 Panel panel = new Panel();
-                panel.Name = config.Key;
-                panel.Controls.Add(label);
-                panel.Controls.Add(textbox);
-                panel.AutoSize = true;
+
+                    var textbox = new TextBox();
+                    textbox.Text = config.Value;
+                    textbox.Width = width;
+                    textbox.Location = new Point(x, 0);
+                    textbox.Name = config.Key;
+
+                    panel.Name = config.Key;
+                    panel.Controls.Add(label);
+                    panel.Controls.Add(textbox);
+                    panel.AutoSize = true;
 
                 flpConfig.Controls.Add(panel);
             }
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -107,5 +110,16 @@ namespace SMS_Speed
             else
                 MessageBox.Show(err, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }

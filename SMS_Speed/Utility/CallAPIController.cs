@@ -32,7 +32,7 @@ namespace SMS_Speed.Utility
             result = string.Empty;
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(apiLink);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(apiLink);    
                 httpWebRequest.ContentType = contentType;
                 httpWebRequest.Method = method;
                 httpWebRequest.Proxy = new WebProxy();//no proxy

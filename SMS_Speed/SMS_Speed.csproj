@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="DTO\BalanceDTO.cs" />
     <Compile Include="DTO\MemberDTO.cs" />
+    <Compile Include="DTO\ResponseDTO.cs" />
+    <Compile Include="DTO\TemplateDTO.cs" />
     <Compile Include="eSMS\SMSFunction.cs" />
     <Compile Include="frmSendSMS.cs">
       <SubType>Form</SubType>
