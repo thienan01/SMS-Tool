@@ -96,7 +96,7 @@ namespace SMS_Speed.eSMS
         }
 
 
-        public static bool SendSMSJson(List<MemberDTO> customers)
+        public static ResponseDTO SendSMSJson(List<MemberDTO> customers)
         {
             string apiUrl = "http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_post_json/";
             try
@@ -120,14 +120,13 @@ namespace SMS_Speed.eSMS
                     string err = CallAPIController.CallAPI(apiUrl, jsonBody, "application/json", "POST", out result);
                     if (!err.Equals(""))
                     {
-                        return false;
+                        return JsonConvert.DeserializeObject<ResponseDTO>(result);
                     }
                 }
-                return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

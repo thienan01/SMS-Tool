@@ -50,12 +50,13 @@ namespace SMS_Speed
                                }).ToList();
                 List<MemberDTO> customers = members.Where(w => w.HomeTele != "").Select(s=> s).ToList();
 
-                if (SMSFunction.SendSMSJson(customers))
+                ResponseDTO res = SMSFunction.SendSMSJson(customers);
+                if (res.CodeResult == 100)
                 {
                     MessageBox.Show("Sent successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
-                    throw new Exception("Error");
+                    throw new Exception(res.ErrorMessage);
             }
             catch (Exception ex)
             {

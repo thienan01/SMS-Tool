@@ -11,5 +11,6 @@ namespace SMS_Speed.DTO
         public int CodeResult;
         public int CountRegenerate;
         public string SMSID;
+        public string ErrorMessage;
     }
 }
